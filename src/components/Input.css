@@ -1,0 +1,14 @@
+/* Text Area Styling */
+.textArea {
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	margin-bottom: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 7px;
+	resize: vertical;
+}
+
+.textArea:focus {
+	outline: 0;
+	box-shadow: inset 0 0 3px #ccc;
+}
