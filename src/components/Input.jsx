@@ -9,6 +9,7 @@ const Input = ({ textInput, onChange, disabledState }) => {
 			value={textInput}
 			onChange={onChange}
 			disabled={disabledState}
+			autoFocus={true}
 			minRows={5}
 			className='textArea'
 			placeholder='Input text here'

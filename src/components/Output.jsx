@@ -1,10 +1,13 @@
 import './Output.css'
 
 import CloseIcon from '@mui/icons-material/Close'
-// import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
+
+// Components
+import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
 // import Wave from '@foobar404/wave'
+
 // import { useEffect, useState } from 'react'
 
 const Output = ({ textInput, closeOutput }) => {
@@ -30,12 +33,17 @@ const Output = ({ textInput, closeOutput }) => {
 	// 	loadWave()
 	// }, [])
 	return (
-		<div className='output'>
+		<Box
+			className='output'
+			sx={{
+				backgroundColor: (theme) => theme.palette.error.light,
+			}}
+		>
 			<IconButton onClick={closeOutput}>
 				<CloseIcon />
 			</IconButton>
-			<Typography>{textInput}</Typography>
-		</div>
+			<Typography sx={{ p: '5px' }}>{textInput}</Typography>
+		</Box>
 	)
 }
 

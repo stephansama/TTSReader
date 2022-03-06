@@ -11,17 +11,19 @@ import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
 import Container from '@mui/material/Container'
 import Stack from '@mui/material/Stack'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function App() {
 	const [textInput, setTextInput] = useState('')
 	const [showOutput, setShowOutput] = useState(false)
+	const [utterance, setUtterance] = useState(null)
+	const [currentCharacter, setCurrentCharacter] = useState('')
+	const [currentVoice, setCurrentVoice] = useState(null)
+	const [voices, setVoices] = useState([])
+	const [selectedVoice, setSelectedVoice] = useState(null)
+	const [rate, setRate] = useState(1)
 	// TODO: define state of playing
 	// TODO: define state of positional
-	// TODO: create function to play text input
-	// TODO: create function to pause speaking
-	// TODO: create function to stop speaking
-	// TODO: open output section with currently selected text
 
 	const closeOutput = (e) => {
 		setShowOutput(false)
@@ -29,20 +31,49 @@ function App() {
 		window.speechSynthesis.cancel()
 	}
 
-	const changeSpeed = (e) => {}
+	const changeRate = (e) => {
+		setRate(parseFloat(e.target.value))
+		if (window.speechSynthesis.speaking) window.speechSynthesis.cancel()
 
-	const pauseSpeaking = (e) => window.speechSynthesis.pause()
+		// TODO: restart playback if playing
+	}
+
+	const changeVoice = (e) => {}
+
+	const pauseSpeaking = (e) => {
+		if (window.speechSynthesis.speaking) window.speechSynthesis.pause()
+	}
 
 	const startSpeaking = (e) => {
-		e.preventDefault()
-		if (window.speechSynthesis.speaking && window.speechSynthesis.pending) {
-			window.speechSynthesis.resume()
-			return
-		}
-		let utterance = new SpeechSynthesisUtterance(textInput)
-		window.speechSynthesis.speak(utterance)
+		if (window.speechSynthesis.speaking && window.speechSynthesis.paused)
+			return window.speechSynthesis.resume()
+
+		setUtterance(() => {
+			const utter = new SpeechSynthesisUtterance(textInput)
+			utter.rate = rate
+			window.speechSynthesis.speak(utter)
+			utter.onboundary = (e) => setCurrentCharacter(e.charIndex)
+			return utter
+		})
 		setShowOutput(true)
 	}
+
+	useEffect(() => {
+		setTimeout(() => {
+			const voices = window.speechSynthesis.getVoices()
+			if (voices.length !== 0) {
+				setVoices(() => voices)
+				for (let i = 0; i < voices.length; i++) {
+					if (voices[i].default) setCurrentVoice(i)
+				}
+			} else alert('An error has occurred')
+			// setVoices(() => window.speechSynthesis.getVoices())
+		}, 50)
+	}, [])
+
+	useEffect(() => {
+		console.log(currentCharacter)
+	}, [currentCharacter])
 
 	return (
 		<div
@@ -66,9 +97,7 @@ function App() {
 					<CardContent>
 						{/* Heading */}
 						<CardHeader
-							sx={{
-								textAlign: 'center',
-							}}
+							sx={{ textAlign: 'center' }}
 							title='Text To Speech Reader 🗣'
 							subheader='this is a simple web application'
 						/>
@@ -79,7 +108,11 @@ function App() {
 								onChange={(e) => setTextInput(e.target.value)}
 							/>
 							<Controls
-								changeSpeed={changeSpeed}
+								rate={rate}
+								changeRate={changeRate}
+								changeVoice={changeVoice}
+								selectedVoice={selectedVoice}
+								voices={voices}
 								pauseSpeaking={pauseSpeaking}
 								startSpeaking={startSpeaking}
 							/>
