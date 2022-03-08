@@ -24,10 +24,10 @@ const Controls = ({
 }) => {
 	return (
 		<Stack className='controls'>
-			{/* VOICES */}
+			{/* VOICES }
 			<Tooltip title='Possible voices' placement='left'>
 				<FormControl sx={{ alignSelf: 'center', width: '50%' }}>
-					{/* <InputLabel id='demo-simple-select-label'>Voice</InputLabel> */}
+					{/* <InputLabel id='demo-simple-select-label'>Voice</InputLabel> }
 					<Select
 						id='demo-simple-select'
 						size='small'
