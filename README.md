@@ -5,11 +5,12 @@
 [![React JS](https://img.shields.io/badge/React%20JS-17.0.2-61DAFB?style=flat-square&logo=react)](https://reactjs.org/docs/getting-started.html)
 
 [![Speech Synthesis API](https://img.shields.io/badge/Speech%20Synthesis-API-F5F5F5?style=flat-square&logo=mozilla)](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis)
-[![Wave.js](https://img.shields.io/badge/Wave.js-NPM-CB0000?style=flat-square&logo=npm)](https://www.npmjs.com/package/@foobar404/wave)
+
+<!-- [![Wave.js](https://img.shields.io/badge/Wave.js-NPM-CB0000?style=flat-square&logo=npm)](https://www.npmjs.com/package/@foobar404/wave) -->
 
 ### Getting Started
 
-[Click Here]() (not available right now) to see the deployed application
+[Click Here](https://clever-brown-5ae611.netlify.app) to see the deployed application
 
 This website allows users to input text and have the computer read the text at variable rates.
 
