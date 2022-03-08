@@ -4,3 +4,8 @@
 	border: 3px solid black;
 	max-width: initial;
 }
+
+.highlighted {
+	background-color: yellow;
+	color: black;
+}

@@ -71,10 +71,6 @@ function App() {
 		}, 50)
 	}, [])
 
-	useEffect(() => {
-		console.log(currentCharacter)
-	}, [currentCharacter])
-
 	return (
 		<div
 			style={{
@@ -86,7 +82,7 @@ function App() {
 			<Header />
 			<Container
 				sx={{
-					marginTop: '50px',
+					my: '50px',
 					display: 'flex',
 					flexDirection: 'column',
 					flexGrow: '1',
@@ -99,7 +95,7 @@ function App() {
 						<CardHeader
 							sx={{ textAlign: 'center' }}
 							title='Text To Speech Reader 🗣'
-							subheader='this is a simple web application'
+							subheader='This is a web application that allows you to input text and have the website read it to you.'
 						/>
 						<Stack>
 							<Input
@@ -117,7 +113,11 @@ function App() {
 								startSpeaking={startSpeaking}
 							/>
 							{showOutput && (
-								<Output textInput={textInput} closeOutput={closeOutput} />
+								<Output
+									textInput={utterance?.text}
+									closeOutput={closeOutput}
+									currentCharacter={currentCharacter}
+								/>
 							)}
 						</Stack>
 					</CardContent>

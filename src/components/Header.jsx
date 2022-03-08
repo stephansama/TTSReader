@@ -11,7 +11,7 @@ const Header = () => {
 				<Toolbar>
 					<Container>
 						<Typography align='center' variant='h6'>
-							TTS Reader 🔊
+							TTS Reader
 						</Typography>
 					</Container>
 				</Toolbar>

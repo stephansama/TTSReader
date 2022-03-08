@@ -6,32 +6,22 @@ import CloseIcon from '@mui/icons-material/Close'
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-// import Wave from '@foobar404/wave'
 
-// import { useEffect, useState } from 'react'
+const Output = ({ textInput, closeOutput, currentCharacter }) => {
+	const getCurr = (before) => {
+		// get the words before the cursor
+		let tmp = textInput.substring(0, currentCharacter)
+		// grab the words after the cursor
+		let t2 = textInput.substring(currentCharacter)
+		// find the next space
+		let spaceLoc = t2.indexOf(' ')
+		if (spaceLoc > -1)
+			return before
+				? textInput.substring(0, tmp.length + spaceLoc)
+				: textInput.substring(tmp.length + spaceLoc)
+		return before ? textInput : ''
+	}
 
-const Output = ({ textInput, closeOutput }) => {
-	// let [wave] = useState(new Wave())
-
-	// const loadWave = () => {
-	// 	navigator.mediaDevices
-	// 		.getUserMedia({
-	// 			audio: true,
-	// 		})
-	// 		.then(function (stream) {
-	// 			wave.fromStream(stream, '#here', {
-	// 				type: 'shine',
-	// 				colors: ['red', 'white', 'blue'],
-	// 			})
-	// 		})
-	// 		.catch(function (err) {
-	// 			console.log(err.message)
-	// 		})
-	// }
-
-	// useEffect(() => {
-	// 	loadWave()
-	// }, [])
 	return (
 		<Box
 			className='output'
@@ -42,7 +32,10 @@ const Output = ({ textInput, closeOutput }) => {
 			<IconButton onClick={closeOutput}>
 				<CloseIcon />
 			</IconButton>
-			<Typography sx={{ p: '5px' }}>{textInput}</Typography>
+			<Typography sx={{ p: '5px' }}>
+				<span className='highlighted'>{getCurr(true)}</span>
+				<span>{getCurr(false)}</span>
+			</Typography>
 		</Box>
 	)
 }
