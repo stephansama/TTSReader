@@ -11,4 +11,8 @@
 
 [Click Here]() (not available right now) to see the deployed application
 
+This website allows users to input text and have the computer read the text at variable rates.
+
+![screenshot](assets/screenshot.png)
+
 **Author: Stephan Randle**
