@@ -95,7 +95,7 @@ function App() {
 						<CardHeader
 							sx={{ textAlign: 'center' }}
 							title='Text To Speech Reader 🗣'
-							subheader='This is a web application that allows you to input text and have the website read it to you.'
+							subheader='This web application allows you to input text and have the website read it to you.'
 						/>
 						<Stack>
 							<Input
