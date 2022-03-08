@@ -59,16 +59,16 @@ function App() {
 	}
 
 	useEffect(() => {
-		setTimeout(() => {
-			const voices = window.speechSynthesis.getVoices()
-			if (voices.length !== 0) {
-				setVoices(() => voices)
-				for (let i = 0; i < voices.length; i++) {
-					if (voices[i].default) setCurrentVoice(i)
-				}
-			} else alert('An error has occurred')
-			// setVoices(() => window.speechSynthesis.getVoices())
-		}, 50)
+		// setTimeout(() => {
+		// 	const voices = window.speechSynthesis.getVoices()
+		// 	if (voices.length !== 0) {
+		// 		setVoices(() => voices)
+		// 		for (let i = 0; i < voices.length; i++) {
+		// 			if (voices[i].default) setCurrentVoice(i)
+		// 		}
+		// 	} else alert('An error has occurred')
+		// 	// setVoices(() => window.speechSynthesis.getVoices())
+		// }, 50)
 	}, [])
 
 	return (
