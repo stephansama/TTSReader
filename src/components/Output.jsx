@@ -1,13 +1,18 @@
-import './Output.css'
-
-import CloseIcon from '@mui/icons-material/Close'
-
-// Components
-import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
+import CloseIcon from '@mui/icons-material/Close'
+import Box from '@mui/material/Box'
 
-const Output = ({ textInput, closeOutput, currentCharacter }) => {
+import { useContext, useEffect } from 'react'
+
+import { tts } from '../contexts/tts'
+
+import './Output.css'
+
+const Output = () => {
+	const { textInput, closeOutput, currentCharacter, showOutput } =
+		useContext(tts)
+
 	const getCurr = (before) => {
 		// get the words before the cursor
 		let tmp = textInput.substring(0, currentCharacter)
@@ -22,9 +27,14 @@ const Output = ({ textInput, closeOutput, currentCharacter }) => {
 		return before ? textInput : ''
 	}
 
+	useEffect(() => {
+		console.log(currentCharacter)
+	}, [currentCharacter])
+
 	return (
 		<Box
-			className='output'
+			id='output'
+			className={showOutput ? 'output-display' : 'output-hide'}
 			sx={{
 				backgroundColor: (theme) => theme.palette.error.light,
 			}}

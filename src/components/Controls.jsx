@@ -5,7 +5,7 @@ import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import Slider from '@mui/material/Slider'
 import Stack from '@mui/material/Stack'
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+// import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
 // ICONS
 import FastForwardIcon from '@mui/icons-material/FastForward'
@@ -13,15 +13,11 @@ import FastRewindIcon from '@mui/icons-material/FastRewind'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import PauseIcon from '@mui/icons-material/Pause'
 
-const Controls = ({
-	changeVoice,
-	changeRate,
-	pauseSpeaking,
-	startSpeaking,
-	voices,
-	rate,
-	selectedVoice,
-}) => {
+import { useContext } from 'react'
+import { tts } from '../contexts/tts'
+
+const Controls = () => {
+	const { changeRate, pauseSpeaking, startSpeaking, rate } = useContext(tts)
 	return (
 		<Stack className='controls'>
 			{/* VOICES }
@@ -69,7 +65,7 @@ const Controls = ({
 				</Tooltip>
 				{/* START Button */}
 				<Tooltip title='Start'>
-					<Button onClick={() => startSpeaking()} variant='outlined'>
+					<Button onClick={startSpeaking} variant='outlined'>
 						<PlayArrowIcon />
 					</Button>
 				</Tooltip>

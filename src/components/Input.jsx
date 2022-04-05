@@ -1,14 +1,17 @@
-// CSS
+import TextareaAutosize from '@mui/material/TextareaAutosize'
+import { useContext } from 'react'
+import { tts } from '../contexts/tts'
+
 import './Input.css'
 
-import TextareaAutosize from '@mui/material/TextareaAutosize'
+const Input = () => {
+	const { textInput, setTextInput, showOutput } = useContext(tts)
 
-const Input = ({ textInput, onChange, disabledState }) => {
 	return (
 		<TextareaAutosize
 			value={textInput}
-			onChange={onChange}
-			disabled={disabledState}
+			onChange={(e) => setTextInput(e.target.value)}
+			disabled={showOutput}
 			autoFocus={true}
 			minRows={5}
 			className='textArea'
